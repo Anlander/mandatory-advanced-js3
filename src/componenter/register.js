@@ -49,19 +49,11 @@ class Register extends Component {
     })
   }
 
-  getMailValues = e => {
-    this.setState({
-      [e.target.mail]: e.target.value
-    }, () => console.log(this.state))
-  }
-
-  getPasswordValues = e => {
-    this.setState({
-      [e.target.password]: e.target.value
-    }, () => console.log(this.state))
-  }
-
-
+  getInputValues = e => {
+  this.setState({
+    [e.target.name]: e.target.value
+  }, () => console.log(this.state))
+}
 
 
   render() {
@@ -81,6 +73,7 @@ class Register extends Component {
           <input
               className="login-input"
               type='email'
+              name="mail"
               ref="username"
               placeholder="Email"
               onChange={this.getMailValues}
@@ -88,6 +81,7 @@ class Register extends Component {
           <input
             type='password'
             ref='password'
+            name="password"
             placeholder='Password'
             onChange={this.getPasswordValues}
           />
