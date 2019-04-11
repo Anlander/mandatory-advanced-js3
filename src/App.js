@@ -37,14 +37,19 @@ class App extends Component {
 
 logout(event){
   removeToken();
+  this.setState({ logout: true })
   console.log("hej")
-  console.log("tjen")
+
 }
 
 
 
     render() {
+      if(this.state.logout) {
+      return <Redirect to="/login" />
+    }
       console.log(this.state.email)
+      console.log(this.state.logout)
     return (
     <Router>
       <div>
