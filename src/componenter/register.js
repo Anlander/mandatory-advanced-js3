@@ -29,7 +29,7 @@ class Register extends Component {
   console.log(this.state)
   axios.post(root + "/register", {
     password: this.state.password,
-    mail: this.state.mail,
+    email: this.state.mail,
   })
   .then((response)=>{
 
@@ -57,7 +57,7 @@ class Register extends Component {
 
 
   render() {
-    if (this.state.login) {
+    if (this.state.login === true) {
       return <Redirect to="/login" />;
     } else if (this.state.err) {
           return (
@@ -74,13 +74,11 @@ class Register extends Component {
               className="login-input"
               type='email'
               name="mail"
-              ref="username"
               placeholder="Email"
               onChange={this.getInputValues}
           /> <br></br>
           <input
             type='password'
-            ref='password'
             name="password"
             placeholder='Password'
             onChange={this.getInputValues}

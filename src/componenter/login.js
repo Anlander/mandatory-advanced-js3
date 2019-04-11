@@ -29,7 +29,7 @@ class Login extends Component {
   //console.log('test')
   axios.post(root + "/auth", {
     password: this.state.password,
-    mail: this.state.mail
+    email: this.state.mail
   })
   .then((response)=>{
 
@@ -49,22 +49,11 @@ class Login extends Component {
     })
   }
 
-  getMailValues = e => {
-    this.setState({
-      [e.target.mail]: e.target.value
-    }, () => console.log(this.state))
-  }
-
-  getPasswordValues = e => {
-    this.setState({
-      [e.target.password]: e.target.value
-    }, () => console.log(this.state))
-  }
-
-
-
-
-
+  getInputValues = e => {
+  this.setState({
+    [e.target.name]: e.target.value
+  }, () => console.log(this.state))
+}
 
 
 
@@ -86,15 +75,15 @@ class Login extends Component {
           <input
               className="login-input"
               type='email'
-              ref="username"
+              name="mail"
               placeholder="Email"
-              onChange={this.getMailValues}
+              onChange={this.getInputValues}
           /> <br></br>
           <input
             type='password'
-            ref='password'
+            name="mail"
             placeholder='Password'
-            onChange={this.getPasswordValues}
+            onChange={this.getInputValues}
           />
             <br></br>
             <button
