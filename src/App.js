@@ -5,6 +5,7 @@ import {token$, updateToken, removeToken} from "./JWT";
 import jwt from "jsonwebtoken";
 import Login from './componenter/login';
 import Register from './componenter/register';
+import Todo from './componenter/todo';
 // import Todo from './todo';
 
 
@@ -19,19 +20,19 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //     this.subscription = token$.subscribe( (token) => {
-  //       this.setState({ token });
-  //       const decoded = jwt.decode(token);
-  //       if (decoded) {
-  //         this.setState({ email: decoded.email });
-  //       }
-  //     });
-  //   }
-  //
-  //   componentWillUnmount() {
-  //     this.subscription.unsubscribe();
-  //   }
+  componentDidMount() {
+      this.subscription = token$.subscribe( (token) => {
+        this.setState({ token });
+        const decoded = jwt.decode(token);
+        if (decoded) {
+          this.setState({ email: 'Welcome ' + decoded.email });
+        }
+      });
+    }
+
+    componentWillUnmount() {
+      this.subscription.unsubscribe();
+    }
 
 logout(event){
   removeToken();
@@ -48,11 +49,13 @@ logout(event){
         <Router>
         <Link to='/login'>LOGIN</Link> <br></br>
         <Link to='/register'>REGISTER</Link>
+        <Link to='/todo'>REGISTER</Link>
         <Route path="/login" component={Login}></Route>
         <Route path="/register" component={Register}></Route>
-          <h1>{ this.state.email }</h1>
+        <Route path="/todo" component={Todo}></Route>
+          <p>{ this.state.email }</p>
           <button onClick={this.logout} >Logout</button>
-          // <span>Welcome, {this.state.mail}</span>
+
       </Router>
 
       </div>

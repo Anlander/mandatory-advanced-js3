@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {updateToken} from "../JWT";
 import { Route, Link, Redirect } from "react-router-dom";
+
+
+
 class Login extends Component {
 
 
@@ -33,7 +36,7 @@ class Login extends Component {
   .then((response)=>{
 
     console.log(response);
-    updateToken(response.data);
+    updateToken(response.data.token);
 
     this.setState({
       login: true,
