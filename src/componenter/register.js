@@ -29,7 +29,7 @@ class Register extends Component {
   console.log(this.state)
   axios.post(root + "/register", {
     password: this.state.password,
-    mail: this.state.mail
+    mail: this.state.mail,
   })
   .then((response)=>{
 
@@ -76,14 +76,14 @@ class Register extends Component {
               name="mail"
               ref="username"
               placeholder="Email"
-              onChange={this.getMailValues}
+              onChange={this.getInputValues}
           /> <br></br>
           <input
             type='password'
             ref='password'
             name="password"
             placeholder='Password'
-            onChange={this.getPasswordValues}
+            onChange={this.getInputValues}
           />
             <br></br>
             <button
