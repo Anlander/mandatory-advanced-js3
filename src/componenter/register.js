@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {updateToken} from "../JWT";
 import { Route, Link, Redirect } from "react-router-dom";
-
+import Login from './login'
 
 class Register extends Component {
 
@@ -37,14 +37,14 @@ class Register extends Component {
     updateToken(response.data.token);
 
     this.setState({
-      register: true,
+      register: true
     })
   })
   .catch((err)=>{
       //console.log('working')
       console.log(err);
       this.setState({
-        err: true,
+        err: true
       })
     })
   }
@@ -57,12 +57,12 @@ class Register extends Component {
 
 
   render() {
-    if (this.state.login === true) {
-      return <Redirect to="/login" />;
+    if (this.state.register === true) {
+      return <Redirect to="/login" />
     } else if (this.state.err) {
           return (
             <div>
-              <p>Error, problem has been detected, try again</p>
+              <p>Error, problem has been detected</p>
             </div>
               )
           }

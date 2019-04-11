@@ -8,6 +8,6 @@ export function updateToken(newToken){
     token$.next(newToken);
 }
 
-export function clearToken(){
+export function removeToken(){
     window.localStorage.removeItem("token");
 }

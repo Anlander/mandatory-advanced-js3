@@ -24,7 +24,6 @@ class Login extends Component {
 
   Submit(e){
   e.preventDefault();
-
   const root = "http://ec2-13-53-32-89.eu-north-1.compute.amazonaws.com:3000";
   //console.log('test')
   axios.post(root + "/auth", {
@@ -81,7 +80,7 @@ class Login extends Component {
           /> <br></br>
           <input
             type='password'
-            name="mail"
+            name="password"
             placeholder='Password'
             onChange={this.getInputValues}
           />
