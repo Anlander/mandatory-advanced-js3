@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
-import { Route, Link, Redirect } from "react-router-dom";
+import { Route, Link, Redirect, Switch } from "react-router-dom";
 import {token$, updateToken, removeToken} from "./JWT";
 import jwt from "jsonwebtoken";
 import Login from './componenter/login';
 import Register from './componenter/register';
 import Todo from './componenter/todo';
+import { NavLink } from 'react-router-dom'
 // import Todo from './todo';
 
 
@@ -14,18 +15,18 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      email: "",
+      username: "",
       logout: false,
-      // token:token$.value
+      token:token$.value
     }
   }
 
   componentDidMount() {
-      this.subscription = token$.subscribe( (token) => {
+        this.subscription = token$.subscribe( (token) => {
         this.setState({ token });
-        const decoded = jwt.decode(token);
-        if (decoded) {
-          this.setState({ email: 'Welcome ' + decoded.email });
+        const decode = jwt.decode(token);
+        if (decode) {
+          this.setState({ username: 'Welcome ' + decode.email });
         }
       });
     }
@@ -37,30 +38,37 @@ class App extends Component {
 logout(event){
   removeToken();
   console.log("hej")
+  console.log("tjen")
 }
 
 
-  render() {
-    console.log(removeToken());
-    console.log(this.state)
 
+    render() {
+      console.log(this.state.email)
     return (
+    <Router>
       <div>
-        <Router>
-        <Link to='/login'>LOGIN</Link> <br></br>
-        <Link to='/register'>REGISTER</Link>
-        <Link to='/todo'>REGISTER</Link>
-        <Route path="/login" component={Login}></Route>
-        <Route path="/register" component={Register}></Route>
-        <Route path="/todo" component={Todo}></Route>
-          <p>{ this.state.email }</p>
-          <button onClick={this.logout} >Logout</button>
-
-      </Router>
-
+        <header>
+            {this.state.token ?
+                <div>
+                    <p>{ this.state.username }</p>
+                    <button onClick={this.logout}>Logout</button>
+                </div> :
+                <div>
+                    <NavLink to='/login'>LOGIN</NavLink> <br></br>
+                    <NavLink to='/register'>REGISTER</NavLink>
+                </div>
+            }
+        </header>
+           <Switch>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route path="/todo" component={Todo}></Route>
+          </Switch>
       </div>
+    </Router>
     );
   }
-  }
+}
 
   export default App;
