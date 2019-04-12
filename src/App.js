@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
-import { Route, Link, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import {token$, updateToken, removeToken} from "./JWT";
 import jwt from "jsonwebtoken";
 import Login from './componenter/login';
 import Register from './componenter/register';
 import Todo from './componenter/todo';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 // import Todo from './todo';
 
 
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      username: "",
-      logout: false,
-      token:token$.value
+  class App extends Component {
+    constructor(props){
+      super(props);
+        this.state={
+        username: "",
+        logoff: false,
+        token:token$.value
     }
   }
 
@@ -31,27 +30,31 @@ class App extends Component {
       });
     }
 
-    componentWillUnmount() {
+  componentWillUnmount() {
       this.subscription.unsubscribe();
     }
 
-logout(event){
-  removeToken();
-  this.setState({ logout: true })
-  console.log("hej")
+    logout = () => {
+      removeToken();
+      this.setState ({ logoff:true })
+    }
 
-}
+
+
 
 
 
     render() {
-      if(this.state.logout) {
-      return <Redirect to="/login" />
-    }
-      console.log(this.state.email)
-      console.log(this.state.logout)
+
+
+        if (this.state.logoff === true){
+          return <Login />
+        }
+      // console.log(this.state.username)
+      // console.log(this.state.logout)
     return (
-    <Router>
+
+    <BrowserRouter>
       <div>
         <header>
             {this.state.token ?
@@ -71,7 +74,8 @@ logout(event){
             <Route path="/todo" component={Todo}></Route>
           </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
+
     );
   }
 }

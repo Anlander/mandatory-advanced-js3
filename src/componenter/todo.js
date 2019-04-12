@@ -9,12 +9,8 @@ import axios from 'axios';
 class Todo extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            token: token$.value,
-            todos: [],
-            content: '',
+        this.state = {  
             email: '',
-            errorMessage: '',
         }
 
     }
@@ -24,7 +20,7 @@ class Todo extends Component {
 
       return (
         <div>
-      
+
         </div>
         );
       }
