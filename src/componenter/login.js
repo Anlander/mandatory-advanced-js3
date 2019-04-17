@@ -72,8 +72,8 @@ class Login extends Component {
           }
 
     return (
-      <div className='login-div'>
-      <h1>Please enter your login</h1>
+      <div className='login'>
+      <h1 className="enter-login">Please enter your login</h1>
           <input
               className="login-input"
               type='email'

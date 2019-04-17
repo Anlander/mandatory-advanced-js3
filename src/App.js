@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router} from "react-router-dom";
 import {token$, updateToken, removeToken} from "./JWT";
 import jwt from "jsonwebtoken";
 import Login from './componenter/login';
@@ -36,9 +37,8 @@ import { NavLink, Link } from 'react-router-dom'
 
     logout = () => {
       removeToken();
-      this.setState ({ logoff:true })
     }
-
+  
 
 
 
@@ -54,7 +54,7 @@ import { NavLink, Link } from 'react-router-dom'
       // console.log(this.state.logout)
     return (
 
-    <BrowserRouter>
+    <Router>
       <div>
         <header>
             {this.state.token ?
@@ -64,7 +64,8 @@ import { NavLink, Link } from 'react-router-dom'
                 </div> :
                 <div>
                     <NavLink to='/login'>LOGIN</NavLink> <br></br>
-                    <NavLink to='/register'>REGISTER</NavLink>
+                    <NavLink to='/register'>REGISTER</NavLink> <br></br>
+                    <NavLink to='/todo'>Todo</NavLink>
                 </div>
             }
         </header>
@@ -74,7 +75,7 @@ import { NavLink, Link } from 'react-router-dom'
             <Route path="/todo" component={Todo}></Route>
           </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
 
     );
   }
