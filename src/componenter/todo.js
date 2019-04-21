@@ -56,7 +56,7 @@ class Todo extends Component {
 
     onsubmit(e){
         const root = "http://ec2-13-53-32-89.eu-north-1.compute.amazonaws.com:3000";
-        let val ={content: this.state.value}
+        let val = {content: this.state.value}
 
         axios.post(root + "/todos", val, {
           headers: {
@@ -77,10 +77,12 @@ class Todo extends Component {
         })
     }
 
-    removeTodo(id) {
+    removeTodo(e) {
       const root = "http://ec2-13-53-32-89.eu-north-1.compute.amazonaws.com:3000";
-       axios.delete(root + '/todos' + id,
-           { headers: { Authorization: 'Bearer ' + this.state.token } })
+      let id = e.target.value
+      console.log(id)
+       axios.delete(root + '/todos/' + id,
+           { headers: { Authorization: 'Bearer ' + this.state.token} })
            .then(() => {
       axios.get(root + '/todos',
       { headers: { Authorization: 'Bearer ' + this.state.token } })
@@ -101,19 +103,18 @@ class Todo extends Component {
     render() {
 
         let todosContent = this.state.todos.map((todo) => {
-        return <li>{todo.content}
-        <button className="removeTask"
-        onClick={(e) => this.removeTodo (e), (todo.id)}>x</button></li>
+        return <li className="li-todo">{todo.content}
+        <button className="removetodo"
+        onClick={(e) => this.removeTodo(e)} value={todo.id}>x</button></li>
       })
 
 
       return (
-        <div className='todo'>
-        <h1> Todo List </h1>
-          <input onChange={e => this.onChange(e)} placeholder="what to do?"/>
-          <button onClick={e=> this.onsubmit(e)}>ADD</button>
-          <label type="text" value={this.state.todos} />
-          <li>{todosContent}</li>
+        <div className='todo-div'>
+        <h1 className="text-login"> Todo List </h1>
+          <input className="input-l" onChange={e => this.onChange(e)} placeholder="what to do?"/>
+          <button className="btn-todo" onClick={e=> this.onsubmit(e)}>ADD</button><br></br>
+          <label className="li-todo">{todosContent}</label>
 
          </div>
         )

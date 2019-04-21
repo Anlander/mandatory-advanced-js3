@@ -38,7 +38,7 @@ import { NavLink, Link } from 'react-router-dom'
     logout = () => {
       removeToken();
     }
-  
+
 
 
 
@@ -58,14 +58,14 @@ import { NavLink, Link } from 'react-router-dom'
       <div>
         <header>
             {this.state.token ?
-                <div>
-                    <p>{ this.state.username }</p>
-                    <button onClick={this.logout}>Logout</button>
+                <div className="el-div">
+                    <p className="email-text">{ this.state.username }</p>
+                    <button className="logout" onClick={this.logout}>Logout</button>
                 </div> :
-                <div>
-                    <NavLink to='/login'>LOGIN</NavLink> <br></br>
-                    <NavLink to='/register'>REGISTER</NavLink> <br></br>
-                    <NavLink to='/todo'>Todo</NavLink>
+                <div className="logintext">
+                    <NavLink to='/login' className="loginnav">LOGIN</NavLink><br></br>
+                    <NavLink to='/register' className="regnav">REGISTER</NavLink><br></br>
+                    <NavLink to='/todo' className="todonav">TODO</NavLink>
                 </div>
             }
         </header>

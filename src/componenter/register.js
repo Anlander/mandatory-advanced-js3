@@ -68,16 +68,17 @@ class Register extends Component {
           }
 
     return (
-      <div className='login-div'>
-      <h1>Enter Email and Password</h1>
+      <div className='login-screen'>
+      <h1 className="text-register">REGISTER</h1>
           <input
-              className="login-input"
+              className="input-l"
               type='email'
               name="mail"
               placeholder="Email"
               onChange={this.getInputValues}
           /> <br></br>
           <input
+            className="password-l"
             type='password'
             name="password"
             placeholder='Password'

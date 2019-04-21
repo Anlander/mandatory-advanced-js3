@@ -72,16 +72,17 @@ class Login extends Component {
           }
 
     return (
-      <div className='login'>
-      <h1 className="enter-login">Please enter your login</h1>
+      <div className='login-screen'>
+      <h1 className="text-login">ENTER LOGIN</h1>
           <input
-              className="login-input"
+              className="input-l"
               type='email'
               name="mail"
               placeholder="Email"
               onChange={this.getInputValues}
           /> <br></br>
           <input
+            className="password-l"
             type='password'
             name="password"
             placeholder='Password'
