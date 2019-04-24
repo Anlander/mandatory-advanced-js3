@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { BrowserRouter as Router} from "react-router-dom";
 import {token$, updateToken, removeToken} from "./JWT";
 import jwt from "jsonwebtoken";
@@ -27,12 +27,14 @@ import { NavLink, Link } from 'react-router-dom'
         const decode = jwt.decode(token);
         if (decode) {
           this.setState({ username: 'Welcome ' + decode.email });
+
         }
       });
     }
 
   componentWillUnmount() {
       this.subscription.unsubscribe();
+
     }
 
     logout = () => {
@@ -48,9 +50,12 @@ import { NavLink, Link } from 'react-router-dom'
     render() {
 
 
-        if (this.state.logoff === true){
-          return <Redirect to='/login' />
+        if (this.state.logoff == true){
+          return <Login />
+
         }
+
+        console.log("if")
       // console.log(this.state.username)
       // console.log(this.state.logout)
     return (
