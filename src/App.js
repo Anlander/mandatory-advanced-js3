@@ -37,6 +37,7 @@ import { NavLink, Link } from 'react-router-dom'
 
     logout = () => {
       removeToken();
+      this.setState({ logoff:true })
     }
 
 
@@ -48,7 +49,7 @@ import { NavLink, Link } from 'react-router-dom'
 
 
         if (this.state.logoff === true){
-          return <Login />
+          return <Redirect to='/login' />
         }
       // console.log(this.state.username)
       // console.log(this.state.logout)
